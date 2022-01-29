@@ -1,7 +1,7 @@
 var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
-var repoSerarchTerm = document.querySelector("#repo-search-term");
+var repoSearchTerm = document.querySelector("#repo-search-term");
 
 var formSubmitHandler = function(event) {
     // prevents page from refreshing automatically
@@ -14,7 +14,8 @@ var formSubmitHandler = function(event) {
         getUserRepos(username);
 
         // clears old content
-        // repoContainerEl.textContent = "";
+        repoContainerEl.textContent = "";
+        repoSearchTerm.textContent = searchTerm;
         nameInputEl.value = "";
     } else {
         alert("Please enter a valid GitHub username.");
@@ -36,7 +37,7 @@ var getUserRepos = function(user) {
                 displayRepos(data, user);
             });
         } else {
-            alert('Error: ' + response.statusText);
+            window.alert("Error: GitHub User Not Found");
         }
     })
     .catch(function(error) {
